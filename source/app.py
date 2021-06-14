@@ -663,16 +663,17 @@ class MainWindow(QtWidgets.QMainWindow):
         for key, end_index in zip(self.landmarks_categories, self.landmarks_indexes):
             if key in labels.keys():
                 to_copy = labels[key]
-                indexes = self.visibility[start_index:end_index]
+                print(to_copy)
+                visibility = self.visibility[start_index:end_index]
                 index_to_copy = 0
-                for id in indexes:
+                for id in visibility:
                     if id:
                         new_landmarks.append(to_copy[index_to_copy])
                         index_to_copy += 1
                     else:
                         new_landmarks.append([0, 0])
             else:
-                new_landmarks.append([0*(end_index - start_index)])
+                new_landmarks.append([0*(end_index - start_index + 1)])
             start_index = end_index
         with open(os.path.join("annotations", self.art_id, self.img_id + "_2D.json"), 'w+') as f:
             data = {"art_id": self.art_id, "img_id": self.img_id, "landmarks": new_landmarks,
