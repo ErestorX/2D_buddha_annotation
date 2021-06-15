@@ -1257,7 +1257,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # changing fileListWidget loads file
         if self.img_id is not None:
             self.write_json()
-        self.img_id = filename.split("/")[-1]
+        self.img_id = filename.split(os.path.sep)[-1]
         self.img_id = self.img_id.split(".")[0]
         if filename in self.imageList and (
                 self.fileListWidget.currentRow() != self.imageList.index(filename)
@@ -1693,7 +1693,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 | QtWidgets.QFileDialog.DontResolveSymlinks,
             )
         )
-        self.art_id = targetDirPath.split("/")[-1]
+        self.art_id = targetDirPath.split(os.path.sep)[-1]
         self.importDirImages(targetDirPath)
 
     @property
