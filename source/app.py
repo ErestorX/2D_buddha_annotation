@@ -676,6 +676,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 for _ in range(end_index - start_index):
                     new_landmarks.append([0])
             start_index = end_index
+        if not os.path.exists("annotations"):
+            os.mkdir("annotations")
         with open(os.path.join("annotations", self.art_id + "_" + self.img_id + "_2D.json"), 'w+') as f:
             data = {"art_id": self.art_id, "img_id": self.img_id, "landmarks": new_landmarks,
                     "visibility": self.visibility.tolist(), "original_landmarks": self.landmarks.tolist()}
