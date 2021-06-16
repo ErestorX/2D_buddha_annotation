@@ -1697,7 +1697,6 @@ class MainWindow(QtWidgets.QMainWindow):
                 | QtWidgets.QFileDialog.DontResolveSymlinks,
             )
         )
-        print(targetDirPath, os.path.sep)
         self.shard_id = targetDirPath.split("/")[-2]
         self.art_id = targetDirPath.split("/")[-1]
         self.importDirImages(targetDirPath)
