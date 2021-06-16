@@ -649,6 +649,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.visibility = None
         self.art_id = None
         self.img_id = None
+        self.shard_id = None
 
     def write_json(self):
         if self.landmarks is None:
@@ -675,7 +676,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 for _ in range(end_index - start_index):
                     new_landmarks.append([0])
             start_index = end_index
-        with open(os.path.join("annotations", self.art_id, self.img_id + "_2D.json"), 'w+') as f:
+        with open(os.path.join("annotations", self.art_id + "_" + self.img_id + "_2D.json"), 'w+') as f:
             data = {"art_id": self.art_id, "img_id": self.img_id, "landmarks": new_landmarks,
                     "visibility": self.visibility.tolist(), "original_landmarks": self.landmarks.tolist()}
             json.dump(data, f)
@@ -683,10 +684,10 @@ class MainWindow(QtWidgets.QMainWindow):
     def load_json(self, img_id):
         self.img_id = img_id
         shapes = []
-        if os.path.exists(os.path.join("annotations", self.art_id, self.img_id + "_2D.json")):
-            file = os.path.join("annotations", self.art_id, self.img_id + "_2D.json")
+        if os.path.exists(os.path.join("annotations", self.art_id + "_" + self.img_id + "_2D.json")):
+            file = os.path.join("annotations", self.art_id + "_" + self.img_id + "_2D.json")
         else:
-            file = os.path.join("annotations", self.art_id, self.img_id + ".json")
+            file = os.path.join("data", self.shard_id, self.art_id, self.img_id + ".json")
         with open(file) as f:
             data = json.load(f)
             self.landmarks = np.asarray(data['landmarks'])
@@ -1674,7 +1675,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.canvas.endMove(copy=False)
         self.setDirty()
 
-    def openDirDialog(self, _value=False, dirpath='annotations'):
+    def openDirDialog(self, _value=False, dirpath='data'):
         if not self.mayContinue():
             return
         if self.art_id is not None:
@@ -1682,8 +1683,9 @@ class MainWindow(QtWidgets.QMainWindow):
             self.art_id = None
             self.img_id = None
             self.landmarks = None
+            self.shard_id = None
 
-        defaultOpenDirPath = 'annotations'
+        defaultOpenDirPath = 'data'
         targetDirPath = str(
             QtWidgets.QFileDialog.getExistingDirectory(
                 self,
@@ -1693,6 +1695,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 | QtWidgets.QFileDialog.DontResolveSymlinks,
             )
         )
+        self.shard_id = targetDirPath.split(os.path.sep)[-2]
         self.art_id = targetDirPath.split(os.path.sep)[-1]
         self.importDirImages(targetDirPath)
 
