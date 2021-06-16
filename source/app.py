@@ -1698,8 +1698,8 @@ class MainWindow(QtWidgets.QMainWindow):
             )
         )
         print(targetDirPath, os.path.sep)
-        self.shard_id = targetDirPath.split(os.path.sep)[-2]
-        self.art_id = targetDirPath.split(os.path.sep)[-1]
+        self.shard_id = targetDirPath.split("/")[-2]
+        self.art_id = targetDirPath.split("/")[-1]
         self.importDirImages(targetDirPath)
 
     @property
