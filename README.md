@@ -32,7 +32,7 @@ Then depending on your Operating System:
 
 -   For MacOSX:
     
-    0.  Grant all permissions on the folder "buddha_faces_annotation2"
+    0.  First time: Control-click the "MACOSXlabelme.command", choose "open", a warning will appear, click "open again"
     
     a.  Double-click the "MACOSXlabelme.command"
     
