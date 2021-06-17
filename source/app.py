@@ -689,7 +689,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if os.path.exists("../annotations/" + self.art_id + "_" + self.img_id + "_2D.json"):
             file = "../annotations/" + self.art_id + "_" + self.img_id + "_2D.json"
         else:
-            file = "../data/" + self.art_id + "_" + self.img_id + ".json"
+            file = "../data/" + self.art_id + "/" + self.img_id + ".json"
         with open(file) as f:
             data = json.load(f)
             self.landmarks = np.asarray(data['landmarks'])
