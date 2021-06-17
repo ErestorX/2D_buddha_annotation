@@ -678,7 +678,7 @@ class MainWindow(QtWidgets.QMainWindow):
             start_index = end_index
         if not os.path.exists("../annotations"):
             os.mkdir("../annotations")
-        with open("../annotations" + "/" + self.art_id + "_" + self.img_id + "_2D.json", 'w+') as f:
+        with open("../annotations/" + self.art_id + "_" + self.img_id + "_2D.json", 'w+') as f:
             data = {"art_id": self.art_id, "img_id": self.img_id, "landmarks": new_landmarks,
                     "visibility": self.visibility.tolist(), "original_landmarks": self.landmarks.tolist()}
             json.dump(data, f)
@@ -686,10 +686,10 @@ class MainWindow(QtWidgets.QMainWindow):
     def load_json(self, img_id):
         self.img_id = img_id
         shapes = []
-        if os.path.exists("../annotations" + "/" + self.art_id + "_" + self.img_id + "_2D.json"):
-            file = "../annotations" + "/" + self.art_id + "_" + self.img_id + "_2D.json"
+        if os.path.exists("../annotations/" + self.art_id + "_" + self.img_id + "_2D.json"):
+            file = "../annotations/" + self.art_id + "_" + self.img_id + "_2D.json"
         else:
-            file = "../data" + "/" + self.art_id + "_" + self.img_id + ".json"
+            file = "../data/" + self.art_id + "_" + self.img_id + ".json"
         with open(file) as f:
             data = json.load(f)
             self.landmarks = np.asarray(data['landmarks'])
