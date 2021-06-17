@@ -6,144 +6,80 @@
 
 このアノテーションでは、仏像の顔のランドマーク点（顔輪郭目鼻口など）の自動抽出のためのデータを作成していただきます。同じ仏像に対して、何枚かの画像でランドマーク点をつけることで、3次元の点の位置を求めることができるようになります。顔を囲む矩形を与えることでランドマーク点の大体の位置が与えられますが、この大体の位置から一番適切と思われる位置に修正してください。
 
+設定とソフトウェアの起動方法
+=======
 
-======
-
-
-You will find the project in a Google Drive folder at this link:
+まずは、アノテーションに利用するソフトウェアを準備します。
 
 https://drive.google.com/drive/folders/1Zz4YJfn-WtoTnjCfWkFR4U6e9q7yckBs?usp=sharing
 
-Please download the project buddha_faces_annotation folder on your computer and copy it wherever you want (Desktop, 
-Download, Documents, etc). \
-Double-click on it once it’s downloaded. You will find a file "data.zip", right click on it and select "Extract here". 
-(double-click for MacOSX users)\
-While it's downloading, please create a folder with your name in the Google Drive, next to the "Shards tracking" file.
-It will be used for you to send your annotations.
+`buddha_face_annotation2`フォルダをダウンロードして、適当な場所に保存してください。ファルダ内に、`data.zip`というファイルがあります。Windowsユーザは右クリックして「ここに解凍」を選択、Macユーザはダブルクリックすると解凍されます。また、上記のGoogleDrive内には、それぞれの名前のフォルダがあります。アノテーションの結果は、それぞれの名前のフォルダに保存していただきます。
 
-Then depending on your Operating System:
+アノテーションに利用するソフトウェアは以下の方法で起動します。
 
--   For Windows:
+-   Windowsの場合:
         
-    a.  Double-click the file "WINDOWSlabelme.bat"
+    1.  `buddha_faces_annotation`のフォルダ内の`WINDOWSlabelme.bat`をダブルクリックします。
         
-    b.  You might be asked to press [y] and Enter a couple of times
-        the first time you open the project, please do so
+    1.  初回起動時、キーボードの[y]とエンターキーを順番に押すように求められることがあります。その場合は、画面の指示に従ってください。
 
 
--   For Linux (Ubuntu, Debian, etc…):
+-   Macの場合:
 
-    a.  Right click inside the folder and click “Open in Terminal”
-    
-    b.  Copy or type: ./LINUXlabelme.sh
+    1.  `buddha_faces_annotation`のフォルダ内の`MACOSXlabelme.command`をダブルクリックします。
         
-    c.  Then press Enter
-        
-    d.  You might be asked to press [y] and Enter a couple of times
-            the first time you open the project, please do so
+    1.  初回起動時、キーボードの[y]とエンターキーを順番に押すように求められることがあります。その場合は、画面の指示に従ってください。
 
 
--   For MacOSX:
-
-    a.  Double-click the "MACOSXlabelme.command"
-    
-    b.  You might be asked to press [y] and Enter a couple of times the
-        first time you open the project, please do so
-
-
-When everything is finished you should have this window opened (don’t
-hesitate to make it in full screen):
+上記手順で、アノテーションで使うソフトウェアのウインドウが表示されます。フルスクリーンにすると操作がしやすいです。
 
 ![alt text](source/Pictures/Picture1.png)
 
-You are now ready to start the annotation.
+これで準備、起動完了です。
 
-Getting started
+アノテーション方法
 ===============
 
-To start annotating click “Open Dir” button, a dialogue window will
-appear where the data is located. Here the folders are named
-“shard\_XX”. They contain 100 artifacts each. When you start annotating
-a new shard please select your name/id/pseudo in the corresponding
-column on the Google Sheets file called “Shards tracking”:
+アノテーションを開始するには、「Open Dir」ボタンをクリックして、ダイアログウインドウで対象のデータを指定します。対象となるデータは、`shard_XX`のフォルダにあり、それぞれ仏像100体分のデータが含まれています。アノテーション作業は、このフォルダ(Shardと呼びます)単位で取り組んでいただきます。新しいShardのアノテーションを始めるときは、他の人とかぶらないように、下記のGoogleDrive上のShardトラッキングのファイルで、対応する行にご自身の名前を記入してください。
 
 https://drive.google.com/drive/folders/1Zz4YJfn-WtoTnjCfWkFR4U6e9q7yckBs?usp=sharing
 
-Do not annotate a shard already started by another annotator.
+**他の人がすでにアノテーションを始めたShardにアノテーション作業をしないように、注意してください。**
 
-Once you have a new shard at your name double-click that folder and
-select any folder inside, they will be named “artifact_XXXX”.
-
-Click “Select folder” when you have selected the desired artifact.
+ShardトラッキングでShardを確保したら、そのフォルダを開きます。すると、`artifact_XXXX`のようなフォルダがあります。このそれぞれが、仏像1体に対応します。Shardに含まれるすべての仏像にアノテーションを付けてください。アノテーション対象のフォルダ（`artifact_XXX`）を選んだら、「Select folder」ボタンを押します。
 
 ![alt text](source/Pictures/Picture2.png)
 
-Navigate through the images of the artifact by clicking on their name in the "File List" box in the bottom right corner:
+すると、右下の「File List」のパネルに画像のファイル名が表示されます。ファイル名をクリックすると画像が読み込まれます。
 
 ![alt text](source/Pictures/Picture3.png)
 
-Click the “Create Rectangle” tool, and place two points (two clicks) to
-create a box that contain fully the face. You should make the most tight box that contains the chin and eyebrows.
-Do not annotate the faces with a view larger than 90°.
-
-![alt text](source/Pictures/Picture4.png)
-
-Then a dialogue box should appear, simply type “detect” in the field
-“Enter object label” and click “OK”.
-
-![alt text](source/Pictures/Picture5.png)
-
-Then the first estimation of landmarks will appear:
+すると、以前にアノテーションをしてもらった結果が表示されます。
 
 ![alt text](source/Pictures/Picture6.png)
 
-Go through each image and repeat this procedure.
+​今回は、2次元の点をアノテーションします。このため、画像中の仏像では見えないと考えられるランドマーク点は表示されないようになっています。
 
-![alt text](source/Pictures/Picture7.png)
-![alt text](source/Pictures/Picture8.png)
+画像中のランドマーク点をクリックすると、そのランドマーク点が選択され、ドラッグすると自由に動かせます。適切と思われる位置に合わせてください。色がついた領域を選択すると、その領域を囲むすべての点を同時に動かせます。新しいランドマーク点を追加する必要はありません。表示されたランドマーク点を移動させてください。`Ctrl`+マウスホイールで画像を拡大縮小できます。変更を取り消す場合は`Ctrl`+`z`を利用してください。他の画像を読み込まない限り、変更を取り消すことができます。
 
-Once all the available faces have been detected, you will have to modify the points that are not correctly detected.\
-First click the button "Edit Polygons" to quite the rectangle creation mode. (You can between these modes as much as 
-you want)\
-Now go to any picture where a detection was made and click on any point. Maintaining the click will allow you 
-to move that point freely.\
-You can do the same with an entire shape if you select the colored area between the points.\
-These modifications are saved independently of the view so deleting the current view's annotation will not revert the 
-changes made. However, you can cancel a modification with "Ctrl" + Z, as long as you do not change of image.\
-The modifications will be reported to the other views, so you will need to correct the same point in several views to 
-have the correct 3D annotation.
-
-![alt text](source/Pictures/Picture12.png)
-![alt text](source/Pictures/Picture13.png)
-
-You can zoom in and out the image maintaining "Ctrl" and using the scroll wheel of the mouse.
-
-![alt text](source/Pictures/Picture9.png)
-
-Please do not trace multiple rectangles in one view, if this situation happens, press "Esc" to cancel the creation:
-
-![alt text](source/Pictures/Picture10.png)
-
-If the display is way too far from the image, please change briefly of image to enable the button "Delete File" and 
-delete the file. You will then be able to select any file. Note that this only delete the annotations, not the image, so
-it's up to you not to try to annotate it again.
-
-![alt text](source/Pictures/Picture11.png)
+**今回は、ランドマーク点は2次元の点として記録されます。ある画像上での編集は他の画像には影響を与えませんので、各画像で1回ずつアノテーションで来たらOKです。**
 
 
-Finishing an artifact and a shard
+
+Shardの作業が終わったら
 =================================
 
-When all the images of an artifact are annotated, repeat the steps to “Open Dir” for the next artifact in your 
-current shard.
-Before quiting the application, change briefly the displayed image to save your last modifications.
+一つの仏像のすべての画像に対してランドマーク点の修正が完了したら、「Open Dir」ボタンでShard内の次の仏像の作業に移ります。
 
-When all the artifacts of a shard are annotated go to the directory of the project, then drag and drop the folder 
-named "annotations" shard in Google Drive, inside the folder you created with your name. 
-(https://drive.google.com/drive/folders/1Zz4YJfn-WtoTnjCfWkFR4U6e9q7yckBs?usp=sharing).
+作業結果の保存は自動的にされていますが、アノテーション用のソフトウェアを閉じる際には、ランドマーク点を少しだけ動かすなどして、直前の作業が確実に保存されるよう注意してください。
 
-Then get a new shard at your name.
+Shard内のすべての画像に対して作業が完了したら、そのShardに対応するフォルダを、下記のGoogleDrive上の`annotations2`の中のご自身の名前のフォルダ内にドラッグ＆ドロップしてアップロードしてください。
 
-Thank you for your implication 😃
+https://drive.google.com/drive/folders/1Zz4YJfn-WtoTnjCfWkFR4U6e9q7yckBs?usp=sharing
+
+​
+その後、新しいShardを取得（Shardトラッキングに名前を入力）して、アノテーションを続けて下さい。
+
+ご協力ありがとうございます 😃
 
 Hugo
